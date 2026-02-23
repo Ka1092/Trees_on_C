@@ -6,16 +6,13 @@ int main(void) {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    Tree* root = NULL;
+    Tree *root = NULL;
 
     int data;
     while (scanf("%d", &data) == 1) {
         root = insert(root, data);
     }
-    print_tree_preorder(root);
-    printf("\n");
-    print_tree_postorder(root);
-    printf("\n");
+    printf("%d", tree_depth(root));
 
     free_tree(root);
     return 0;

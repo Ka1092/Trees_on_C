@@ -10,9 +10,9 @@ struct Node {
     struct Node *pRight;
 };
 
-Tree* insert(Tree* root, int data) {
+Tree *insert(Tree *root, int data) {
     if (root == NULL) {
-        Tree* node = malloc(sizeof(Tree));
+        Tree *node = malloc(sizeof(Tree));
         node->data = data;
         node->pLeft = NULL;
         node->pRight = NULL;
@@ -21,13 +21,13 @@ Tree* insert(Tree* root, int data) {
 
     if (data < root->data) {
         root->pLeft = insert(root->pLeft, data);
-    }
-    else if (data > root->data) {
+    } else if (data > root->data) {
         root->pRight = insert(root->pRight, data);
     }
 
     return root;
 }
+
 void print_tree_postorder(Tree *root) {
     if (root == NULL) {
         return;
@@ -36,6 +36,7 @@ void print_tree_postorder(Tree *root) {
     print_tree_postorder(root->pRight);
     printf("%d ", root->data);
 }
+
 void print_tree_preorder(Tree *root) {
     if (root == NULL) {
         return;
@@ -45,10 +46,24 @@ void print_tree_preorder(Tree *root) {
     print_tree_preorder(root->pRight);
 }
 
-void free_tree(Tree* tree) {
+void free_tree(Tree *tree) {
     if (tree == NULL)
         return;
     free_tree(tree->pLeft);
     free_tree(tree->pRight);
     free(tree);
+}
+
+int tree_depth(Tree *tree) {
+    if (tree == NULL) {
+        return -1;
+    }
+
+    int left_depth = tree_depth(tree->pLeft);
+    int right_depth = tree_depth(tree->pRight);
+    if (left_depth > right_depth) {
+        return 1 + left_depth;
+    } else {
+        return 1 + right_depth;
+    }
 }
