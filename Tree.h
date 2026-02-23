@@ -3,7 +3,9 @@
 
 typedef struct Node Tree;
 
-Tree* createTree(void);
-void printTree(Tree *root);
+Tree* insert(Tree* root, int data);
+void print_tree_postorder(Tree *root);
+void print_tree_preorder(Tree *root);
+void free_tree(Tree *root);
 
-#endif //TREES_TREE_H
+#endif
