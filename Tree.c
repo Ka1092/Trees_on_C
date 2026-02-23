@@ -1,28 +1,33 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "Tree.h"
 
+
 struct Node {
-    int data;
+    char* str;
     struct Node *pLeft;
     struct Node *pRight;
 };
 
-Tree *insert(Tree *root, int data) {
+Tree *insert(Tree *root, char* str) {
+    char* new_char = malloc(sizeof(char)*strlen(str)+1);
+    strcpy(new_char, str);
+
     if (root == NULL) {
         Tree *node = malloc(sizeof(Tree));
-        node->data = data;
+        node->str = new_char;
         node->pLeft = NULL;
         node->pRight = NULL;
         return node;
     }
 
-    if (data < root->data) {
-        root->pLeft = insert(root->pLeft, data);
-    } else if (data > root->data) {
-        root->pRight = insert(root->pRight, data);
+    int value = strcmp(new_char, root->str);
+    if (value < 0) {
+        root->pLeft = insert(root->pLeft, new_char);
+    } else if (value > 0) {
+        root->pRight = insert(root->pRight, new_char);
     }
 
     return root;
@@ -34,14 +39,21 @@ void print_tree_postorder(Tree *root) {
     }
     print_tree_postorder(root->pLeft);
     print_tree_postorder(root->pRight);
-    printf("%d ", root->data);
+    printf("%s\n", root->str);
 }
-
+void print_tree_inorder(Tree *root) {
+    if (root == NULL) {
+        return;
+    }
+    print_tree_inorder(root->pLeft);
+    printf("%s\n", root->str);
+    print_tree_inorder(root->pRight);
+}
 void print_tree_preorder(Tree *root) {
     if (root == NULL) {
         return;
     }
-    printf("%d ", root->data);
+    printf("%s\n", root->str);
     print_tree_preorder(root->pLeft);
     print_tree_preorder(root->pRight);
 }
@@ -51,6 +63,7 @@ void free_tree(Tree *tree) {
         return;
     free_tree(tree->pLeft);
     free_tree(tree->pRight);
+    free(tree->str);
     free(tree);
 }
 

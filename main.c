@@ -8,13 +8,13 @@ int main(void) {
 
     Tree *root = NULL;
 
-    int data;
+    char string[101];
     int k;
     scanf("%d", &k);
-    while (scanf("%d", &data) == 1) {
-        root = insert(root, data);
+    while (scanf("%s", string) == 1) {
+        root = insert(root, string);
     }
-    printf("%d", tree_peek_count(root, k));
+    print_tree_inorder(root);
 
     free_tree(root);
     return 0;
