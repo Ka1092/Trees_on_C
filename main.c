@@ -12,7 +12,7 @@ int main(void) {
     while (scanf("%d", &data) == 1) {
         root = insert(root, data);
     }
-    printf("%d", tree_depth(root));
+    printf("%d", tree_leaves(root));
 
     free_tree(root);
     return 0;

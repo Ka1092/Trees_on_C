@@ -8,5 +8,6 @@ void print_tree_postorder(Tree *root);
 void print_tree_preorder(Tree *root);
 void free_tree(Tree *root);
 int tree_depth(Tree *root);
+int tree_leaves(Tree *root);
 
 #endif

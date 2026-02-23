@@ -67,3 +67,13 @@ int tree_depth(Tree *tree) {
         return 1 + right_depth;
     }
 }
+
+int tree_leaves(Tree *tree) {
+    if (tree == NULL) {
+        return 0;
+    }
+    if (!tree->pLeft && !tree->pRight) {
+        return 1;
+    }
+    return tree_leaves(tree->pLeft) + tree_leaves(tree->pRight);
+}
