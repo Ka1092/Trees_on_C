@@ -9,5 +9,6 @@ void print_tree_preorder(Tree *root);
 void free_tree(Tree *root);
 int tree_depth(Tree *root);
 int tree_leaves(Tree *root);
+int tree_peek_count(Tree *root, int level);
 
 #endif

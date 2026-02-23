@@ -9,10 +9,12 @@ int main(void) {
     Tree *root = NULL;
 
     int data;
+    int k;
+    scanf("%d", &k);
     while (scanf("%d", &data) == 1) {
         root = insert(root, data);
     }
-    printf("%d", tree_leaves(root));
+    printf("%d", tree_peek_count(root, k));
 
     free_tree(root);
     return 0;

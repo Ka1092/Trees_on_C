@@ -77,3 +77,13 @@ int tree_leaves(Tree *tree) {
     }
     return tree_leaves(tree->pLeft) + tree_leaves(tree->pRight);
 }
+
+int tree_peek_count(Tree *root, int level) {
+    if (root == NULL) {
+        return 0;
+    }
+    if (level == 0) {
+        return 1;
+    }
+    return tree_peek_count(root->pLeft, level-1)+tree_peek_count(root->pRight, level-1);
+}
