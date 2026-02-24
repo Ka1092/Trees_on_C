@@ -34,14 +34,14 @@ void print_tree_postorder(Tree *root) {
     }
     print_tree_postorder(root->pLeft);
     print_tree_postorder(root->pRight);
-    printf("%d ", root->data);
+    printf("%c", root->data);
 }
 
 void print_tree_preorder(Tree *root) {
     if (root == NULL) {
         return;
     }
-    printf("%d ", root->data);
+    printf("%c", root->data);
     print_tree_preorder(root->pLeft);
     print_tree_preorder(root->pRight);
 }
