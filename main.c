@@ -1,21 +1,29 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "Tree.h"
 
 int main(void) {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    Tree *root = NULL;
+    Tree* root = NULL;
 
-    int data;
-    int k;
-    scanf("%d", &k);
-    while (scanf("%d", &data) == 1) {
-        root = insert(root, data);
+    char input[1001];
+    scanf("%s", input);
+
+    int pos = 0;
+    root = create_tree(input, &pos);
+
+    int result = eval_forlmula_tree(root);
+
+    if (division_by_zero) {
+        printf("NO");
     }
-    printf("%d", tree_peek_count(root, k));
+    else {
+        printf("%d", result);
+    }
 
     free_tree(root);
-    return 0;
 }
